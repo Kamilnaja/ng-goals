@@ -1,6 +1,0 @@
-{
-  "hooks": {
-  "precommit": "npm test",
-  "prepush": "npm test"
-  }
-}
