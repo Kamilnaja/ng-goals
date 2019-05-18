@@ -22,4 +22,8 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contains menu', () => {
+    expect(fixture.nativeElement.querySelectorAll('ul').length).toEqual(1);
+  });
 });

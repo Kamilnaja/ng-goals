@@ -10,7 +10,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-nyan-reporter'),
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -20,12 +21,29 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['nyan'],
+    nyanReporter: {
+      // suppress the error report at the end of the test run
+      suppressErrorReport: true, // default is false
+
+      // suppress the red background on errors in the error
+      // report at the end of the test run
+      suppressErrorHighlighting: true, // default is false
+
+      // increase the number of rainbow lines displayed
+      // enforced min = 4, enforced max = terminal height - 1
+      numberOfRainbowLines: 100, // default is 4
+
+      // only render the graphic after all tests have finished.
+      // This is ideal for using this reporter in a continuous
+      // integration environment.
+      renderOnRunCompleteOnly: true // default is false
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: false
   });
 };
