@@ -7,9 +7,20 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "precommit": "npm test",
-    "prepush": "npm test"
+    "e2e": "ng e2e"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier --write",
+      "eslint --fix src/",
+      "tslint --fix --project .",
+      "git add"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -44,6 +55,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-nyan-reporter": "^0.2.5",
+    "lint-staged": "^8.1.7",
     "node-sass": "^4.12.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
