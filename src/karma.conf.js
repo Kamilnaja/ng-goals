@@ -24,7 +24,7 @@ module.exports = function (config) {
     reporters: ['nyan'],
     nyanReporter: {
       suppressErrorReport: false, // default is false
-      suppressErrorHighlighting: true, // default is false
+      suppressErrorHighlighting: false, // default is false
       numberOfRainbowLines: 4, // default is 4
       renderOnRunCompleteOnly: true // default is false
     },
