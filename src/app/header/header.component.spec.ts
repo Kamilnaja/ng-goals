@@ -26,4 +26,8 @@ describe('HeaderComponent', () => {
   it('should contains menu', () => {
     expect(fixture.nativeElement.querySelectorAll('ul').length).toEqual(1);
   });
+
+  it('should menu have some items', () => {
+    expect(fixture.nativeElement.querySelectorAll('li').length).toBeGreaterThanOrEqual(1);
+  });
 });
