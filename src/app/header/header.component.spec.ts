@@ -25,11 +25,7 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contains menu', () => {
-    expect(fixture.nativeElement.querySelectorAll('ul').length).toEqual(1);
-  });
-
-  it('should menu have some items', () => {
-    expect(fixture.nativeElement.querySelectorAll('li').length).toBeGreaterThanOrEqual(1);
+  it('should contain one menu item', () => {
+    expect(fixture.nativeElement.querySelectorAll('go-header-menu').length).toEqual(1);
   });
 });
