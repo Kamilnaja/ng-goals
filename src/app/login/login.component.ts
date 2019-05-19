@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'go-login',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service: LoginService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleSubmit() {
+    this.service.submit(this.loginForm.value)
+      .subscribe(item => console.log);
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
     }

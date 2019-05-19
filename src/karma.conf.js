@@ -21,7 +21,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['nyan'],
+    reporters: ['nyan', 'progress'],
     nyanReporter: {
       suppressErrorReport: false, // default is false
       suppressErrorHighlighting: false, // default is false

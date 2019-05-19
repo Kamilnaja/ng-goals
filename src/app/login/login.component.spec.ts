@@ -2,17 +2,29 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { LoginService } from './login.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  const loginServiceStub: Partial<LoginService> = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [ReactiveFormsModule, FormsModule]
+      declarations: [LoginComponent],
+      imports: [
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      providers: [
+        {
+          provide: LoginService, useValue: loginServiceStub
+        }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
