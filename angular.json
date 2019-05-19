@@ -28,8 +28,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/flexboxgrid/css/flexboxgrid.min.css",
-              "node_modules/reset-css/reset.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
