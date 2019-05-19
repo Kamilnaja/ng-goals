@@ -6,6 +6,10 @@ import { HeaderComponent } from './header/header.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/login.component';
+import { FeaturesComponent } from './features/features.component';
 
 @NgModule({
   declarations: [
@@ -14,10 +18,14 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
     WrapperComponent,
     FooterComponent,
     HeaderMenuComponent,
+    MainComponent,
+    LoginComponent,
+    FeaturesComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
