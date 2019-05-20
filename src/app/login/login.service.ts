@@ -5,7 +5,8 @@ import { Login } from './login.interface';
 
 @Injectable()
 export class LoginService {
-  constructor(private http: HttpClient) { }
+  private http: HttpClient;
+  constructor() { }
 
   public submit(body: Login): Observable<Login> {
     return this.http.post<Login>('/4300', body);
