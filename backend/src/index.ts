@@ -1,4 +1,4 @@
-'use strict';
+import { Goal } from '../../interfaces/goal';
 
 const Hapi = require('@hapi/hapi');
 
@@ -18,15 +18,14 @@ const init = async () => {
     }
   });
 
-
   server.route({
     method: 'GET',
     path: '/goals',
     handler: (request: Request, h: any) => {
-      const goal = {
+      const goal: Goal = {
         id: 1,
-        name: 'Challenge yourself'
-      }
+        description: 'Challenge yourself'
+      };
       return goal;
     }
   });
