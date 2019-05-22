@@ -9,6 +9,28 @@ const init = async () => {
     host: 'localhost'
   });
 
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request: Request, h: any) => {
+
+      return 'Hello World!';
+    }
+  });
+
+
+  server.route({
+    method: 'GET',
+    path: '/goals',
+    handler: (request: Request, h: any) => {
+      const goal = {
+        id: 1,
+        name: 'Challenge yourself'
+      }
+      return goal;
+    }
+  });
+
   await server.start();
   console.log('Server running on %s', server.info.uri);
 };
