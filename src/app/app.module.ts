@@ -13,6 +13,9 @@ import { FeaturesComponent } from './features/features.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './login/login.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GoalsComponent } from './goals/goals.component';
+import { GoalsService } from './goals/goals.service';
+import { PricingComponent } from './pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     LoginComponent,
     FeaturesComponent,
+    GoalsComponent,
+    PricingComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, GoalsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

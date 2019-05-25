@@ -26,7 +26,9 @@ const init = async () => {
         id: 1,
         description: 'Challenge yourself'
       };
-      return goal;
+      const goals = [];
+      goals.push(goal);
+      return goals;
     }
   });
 

@@ -9,11 +9,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run test"
-    }
-  },
   "lint-staged": {
     "src/**/*.{ts,json,css}": [
       "tslint --fix --project .",
