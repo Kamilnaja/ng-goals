@@ -1,0 +1,22 @@
+.goals-list {
+  display: flex;
+}
+.goal-name {
+padding: 5px 10px;
+}
+
+.goals-list li {
+  display: flex;
+  font-display: row;
+  border: 1px dashed magenta;
+  max-width: 50%;
+}
+
+.goals-options {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: white;
+  background: grey;
+  padding: 5px 10px;
+}

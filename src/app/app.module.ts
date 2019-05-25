@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GoalsComponent } from './goals/goals.component';
 import { GoalsService } from './goals/goals.service';
 import { PricingComponent } from './pricing/pricing.component';
+import { NewGoalComponent } from './new-goal/new-goal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PricingComponent } from './pricing/pricing.component';
     FeaturesComponent,
     GoalsComponent,
     PricingComponent,
+    NewGoalComponent,
   ],
   imports: [
     BrowserModule,

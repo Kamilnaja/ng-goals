@@ -1,3 +1,26 @@
-<p>
-  goals works!
-</p>
+<div class="container">
+  <div class="row">
+    <h2>Here you can find list of your goals</h2>
+  </div>
+  <section>
+    <ul class="goals-list">
+      <li *ngFor="let goal of goals">
+        <div class="goal-name">
+          {{goal.description}}
+        </div>
+        <div class="goals-options">
+          <span>read</span>
+          <span>delete</span>
+          <span>add progress</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h4>Click here, to add some more goals to track!</h4>
+    <button class="btn btn-primary" (click)="setGoalVisible()">
+      Add next goal
+    </button>
+      <go-new-goal *ngIf="newGoalVisible"></go-new-goal>
+  </section>
+</div>
