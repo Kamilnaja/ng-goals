@@ -10,6 +10,7 @@ import { GoalsService } from './goals.service';
 export class GoalsComponent implements OnInit {
   public goals: Goal[];
   public newGoalVisible = false;
+  public isModalVisible = false;
 
   constructor(private goalsService: GoalsService) { }
 
@@ -19,5 +20,14 @@ export class GoalsComponent implements OnInit {
 
   setGoalVisible(): void {
     this.newGoalVisible = true;
+  }
+
+  deleteGoal(index: number): void {
+    this.isModalVisible = true;
+    this.goalsService.deleteGoal(index);
+  }
+
+  modalClose() {
+    this.isModalVisible = false;
   }
 }

@@ -1,0 +1,16 @@
+.confirmation-modal {
+  z-index: 20;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  transition: 0.3s top ease;
+
+  &.isVisible {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+}
+
