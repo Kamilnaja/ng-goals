@@ -10,7 +10,7 @@
         </div>
         <div class="goals-options">
           <span>read</span>
-          <span>delete</span>
+          <span (click)="deleteGoal(goal.id)">delete</span>
           <span>add progress</span>
         </div>
       </li>
@@ -21,6 +21,7 @@
     <button class="btn btn-primary" (click)="setGoalVisible()">
       Add next goal
     </button>
-      <go-new-goal *ngIf="newGoalVisible"></go-new-goal>
+    <go-new-goal *ngIf="newGoalVisible"></go-new-goal>
   </section>
 </div>
+<go-confirmation-modal [isVisible]="isModalVisible" (emitter)="modalClose(false)"></go-confirmation-modal>

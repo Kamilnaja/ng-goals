@@ -10,4 +10,9 @@ export class GoalsService {
   getGoals() {
     return this.http.request<Goal[]>('GET', `${this.backend}/goals`, { responseType: 'json' });
   }
+
+  deleteGoal(index: number) {
+    console.log(`deleting ${index}`);
+    return this.http.delete(`${this.backend}/goals/${index}`);
+  }
 }

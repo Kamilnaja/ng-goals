@@ -17,6 +17,7 @@ import { GoalsComponent } from './goals/goals.component';
 import { GoalsService } from './goals/goals.service';
 import { PricingComponent } from './pricing/pricing.component';
 import { NewGoalComponent } from './new-goal/new-goal.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NewGoalComponent } from './new-goal/new-goal.component';
     GoalsComponent,
     PricingComponent,
     NewGoalComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,

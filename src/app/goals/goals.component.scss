@@ -20,4 +20,8 @@ padding: 5px 10px;
   color: white;
   background: grey;
   padding: 5px 10px;
+  cursor: pointer;
+  & span:hover {
+    color: navy;
+  }
 }
