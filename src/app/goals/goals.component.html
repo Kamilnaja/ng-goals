@@ -10,8 +10,12 @@
         </div>
         <div class="goals-options">
           <span>read</span>
-          <span (click)="deleteGoal(goal.id)">delete</span>
-          <span>add progress</span>
+          <span (click)="deleteGoal(goal.id)" class="delete-btn">
+            delete
+          </span>
+          <span>
+            add progress
+          </span>
         </div>
       </li>
     </ul>

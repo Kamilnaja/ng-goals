@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { GoalsComponent } from './goals.component';
 import { NewGoalComponent } from '../new-goal/new-goal.component';
 import { GoalsService } from './goals.service';
 import { Goal } from 'interfaces/goal';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('GoalsComponent', () => {
   let component: GoalsComponent;
@@ -47,4 +48,15 @@ describe('GoalsComponent', () => {
   it('should display list of goals', () => {
     expect(fixture.nativeElement.querySelectorAll('.goals-list li').length).toBe(1);
   });
+
+  it('should show modal after click delete', fakeAsync(() => {
+    spyOn(component, 'deleteGoal');
+    const deleteBtn = fixture.debugElement.query(By.css('.delete-btn'));
+    deleteBtn.triggerEventHandler('click', 1);
+    tick();
+    fixture.detectChanges();
+    expect(component.deleteGoal).toHaveBeenCalled();
+    const modal = fixture.debugElement.query(By.css('.confirmation-modal'));
+    expect(modal).toBeDefined();
+  }));
 });

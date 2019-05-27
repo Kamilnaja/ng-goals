@@ -32,7 +32,9 @@ export class GoalsComponent implements OnInit {
   modalClose(val: boolean) {
     this.isModalVisible = false;
     if (val) {
-      this.goalsService.deleteGoal(this.selectedItem).subscribe(item => console.log('deleting'));
+      this.goalsService
+        .deleteGoal(this.selectedItem)
+        .subscribe(item => console.log('deleting'));
     }
   }
 }
