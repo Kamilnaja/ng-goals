@@ -1,5 +1,9 @@
 <div class="confirmation-modal" [hidden]="!isVisible" [class.isVisible]="isVisible">
   Are you sure?
-  <button (click)="setModalClosed()">Yes</button>
-  <button (click)="setModalClosed()">No</button>
+  <button (click)="setModalClosed(true)">
+    Yes
+  </button>
+  <button (click)="setModalClosed(false)">
+    No
+  </button>
 </div>

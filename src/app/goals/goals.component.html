@@ -24,4 +24,4 @@
     <go-new-goal *ngIf="newGoalVisible"></go-new-goal>
   </section>
 </div>
-<go-confirmation-modal [isVisible]="isModalVisible" (emitter)="modalClose(false)"></go-confirmation-modal>
+<go-confirmation-modal [isVisible]="isModalVisible" (emitter)="modalClose($event)"></go-confirmation-modal>

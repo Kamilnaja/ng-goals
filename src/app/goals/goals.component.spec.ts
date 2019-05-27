@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GoalsComponent } from './goals.component';
 import { NewGoalComponent } from '../new-goal/new-goal.component';
 import { GoalsService } from './goals.service';

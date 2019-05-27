@@ -18,7 +18,7 @@ export class ConfirmationModalComponent implements OnInit {
     this.isVisible = condition;
   }
 
-  setModalClosed() {
-    this.emitter.emit(false);
+  setModalClosed(value: boolean) {
+      this.emitter.emit(value);
   }
 }

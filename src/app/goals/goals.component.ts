@@ -7,10 +7,12 @@ import { GoalsService } from './goals.service';
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.scss']
 })
+
 export class GoalsComponent implements OnInit {
   public goals: Goal[];
   public newGoalVisible = false;
   public isModalVisible = false;
+  public selectedItem: number;
 
   constructor(private goalsService: GoalsService) { }
 
@@ -24,10 +26,13 @@ export class GoalsComponent implements OnInit {
 
   deleteGoal(index: number): void {
     this.isModalVisible = true;
-    this.goalsService.deleteGoal(index);
+    this.selectedItem = index;
   }
 
-  modalClose() {
+  modalClose(val: boolean) {
     this.isModalVisible = false;
+    if (val) {
+      this.goalsService.deleteGoal(this.selectedItem).subscribe(item => console.log('deleting'));
+    }
   }
 }
