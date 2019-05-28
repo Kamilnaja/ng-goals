@@ -1,26 +1,35 @@
-const Hapi = require('@hapi/hapi');
-const Mongoose = require('mongoose');
-const Joi = require('joi');
-const routes = require('./routes');
-Mongoose.connect('mongodb://127.0.0.1:27017/test', {useNewUrlParser: true});
+const mongojs = require('mongojs');
+const Boom = require('boom');
+const server = require('./server');
 
-const init = async () => {
-  const server = Hapi.server({
-    port: 8080,
-    host: 'localhost',
-    routes: {
-      cors: true
-    }
-  });
+const db = mongojs('test', ['goals']);
 
-  server.route(routes);
-  await server.start();
-  console.log('Server running on %s', server.info.uri);
-};
-
-process.on('unhandledRejection', (err) => {
-  console.log(err);
-  process.exit(1);
+db.on('connect', () => {
+  console.log(' Db connected ');
 });
 
-init();
+db.on('error', () => {
+  console.log(' Db error ');
+});
+
+server.route({
+  method: 'GET',
+  path: '/goals',
+
+  handler: async(request: Request, h: any) => {
+    try {
+      const goal = await GoalModel.find().exec();
+      return h.response(goal);
+    } catch (err) {
+      throw Boom.badData(err.message);
+    }
+  }
+});
+
+
+server.start((err: Error) => {
+  if (err) {
+    throw err;
+  }
+  console.log(`Server is running on ${server.port}`)
+});
