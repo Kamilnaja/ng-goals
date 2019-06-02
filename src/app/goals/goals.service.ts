@@ -20,4 +20,5 @@ export class GoalsService {
     return this.http.post<Goal[]>(`${this.backend}/goals`, description, {
       responseType: 'json' });
   }
+
 }

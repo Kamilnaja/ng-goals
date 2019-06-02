@@ -14,10 +14,12 @@ export class GoalsComponent implements OnInit {
   public isModalVisible = false;
   public selectedItem: number;
 
-  constructor(private goalsService: GoalsService) { }
+  constructor(private goalsService: GoalsService) {
+  }
 
   ngOnInit() {
-    this.goalsService.getGoals().subscribe(item => this.goals = item);
+    this.goalsService.getGoals()
+      .subscribe(item => this.goals = item);
   }
 
   setGoalVisible(): void {
@@ -32,9 +34,21 @@ export class GoalsComponent implements OnInit {
   modalClose(val: boolean) {
     this.isModalVisible = false;
     if (val) {
-      this.goalsService
-        .deleteGoal(this.selectedItem)
-        .subscribe(item => console.log('deleting'));
+      this.doDelete();
     }
+  }
+
+  private doDelete() {
+    this.goalsService
+      .deleteGoal(this.selectedItem)
+      .subscribe(() => this.refresh());
+  }
+
+  public handleRefresh() {
+    this.refresh();
+  }
+
+  public refresh() {
+    return this.goalsService.getGoals().subscribe((data: Goal[]) => this.goals = data);
   }
 }

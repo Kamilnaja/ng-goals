@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { GoalsService } from '../goals/goals.service';
 
@@ -9,6 +9,7 @@ import { GoalsService } from '../goals/goals.service';
 })
 export class NewGoalComponent implements OnInit {
   public goalForm: FormGroup;
+  @Output() emitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private fb: FormBuilder, private goalService: GoalsService) { }
 
@@ -21,6 +22,8 @@ export class NewGoalComponent implements OnInit {
   handleSubmit(): void {
     console.log(this.goalForm.value);
     this.goalService.saveGoal(this.goalForm.value)
-      .subscribe(item => console.log(item));
+      .subscribe(item => this.goalService.getGoals());
+      this.emitter.emit(true);
+      // emit refresh
   }
 }
