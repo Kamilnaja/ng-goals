@@ -1,4 +1,5 @@
 export interface Goal {
-  _id: number;
+  id: number;
+  _id?: string;
   description: string;
 }

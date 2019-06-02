@@ -1,7 +1,6 @@
 const mongojs = require('mongojs');
 const server = require('./server');
 const Mongoose = require('mongoose');
-const HapiCors = require('hapi-cors');
 const GoalModel = require('./schemas/GoalModel');
 
 Mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true })
@@ -57,10 +56,10 @@ server.route({
   path: '/goals/{id}',
   handler: async (request: any, h: any) => {
     try {
-      console.log('deleting');
-      const result = await GoalModel.findByIdAndDelete(request.params.id).then(() => {
-        console.log('success');
-      });
+      const result = await GoalModel.findByIdAndDelete(request.params.id)
+        .then(() => {
+          console.log('success');
+        });
       return h.response(result);
     } catch (error) {
       return error;
@@ -73,7 +72,8 @@ const start = async function () {
     await server.register({
       plugin: require('hapi-cors'),
       options: {
-        origins: ['*']
+        origins: ['*'],
+        methods: ['POST, GET, OPTIONS', 'DELETE']
       }
     });
     await server.start();
