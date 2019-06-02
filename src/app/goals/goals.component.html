@@ -6,11 +6,12 @@
     <ul class="goals-list">
       <li *ngFor="let goal of goals">
         <div class="goal-name">
-          {{goal.description}}
+          {{goal.description}} <br/>
+          {{goal._id}}
         </div>
         <div class="goals-options">
           <span>read</span>
-          <span (click)="deleteGoal(goal.id)" class="delete-btn">
+          <span (click)="deleteGoal(goal._id)" class="delete-btn">
             delete
           </span>
           <span>

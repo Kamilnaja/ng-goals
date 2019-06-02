@@ -16,7 +16,7 @@ describe('GoalsComponent', () => {
     goalsServiceStub = {};
     const goal1: Goal = {
       description: 'hi',
-      id: 1
+      _id: 1
     };
 
     const goalsList = [];

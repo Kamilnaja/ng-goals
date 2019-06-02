@@ -14,13 +14,13 @@ export class NewGoalComponent implements OnInit {
 
   ngOnInit() {
     this.goalForm = this.fb.group({
-      id: new FormControl(''),
       description: new FormControl('')
     });
   }
 
   handleSubmit(): void {
     console.log(this.goalForm.value);
-    this.goalService.saveGoal(this.goalForm.value).subscribe(item => console.log(item));
+    this.goalService.saveGoal(this.goalForm.value)
+      .subscribe(item => console.log(item));
   }
 }

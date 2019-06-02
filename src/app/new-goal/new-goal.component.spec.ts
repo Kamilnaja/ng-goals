@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewGoalComponent } from './new-goal.component';
 import { FormBuilder } from '@angular/forms';
 import { GoalsService } from '../goals/goals.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('NewGoalComponent', () => {
   let component: NewGoalComponent;
@@ -13,7 +14,8 @@ describe('NewGoalComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NewGoalComponent ],
       providers: [FormBuilder, { provide: GoalsService, useValue: goalsServiceStub
-      }]
+      }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
