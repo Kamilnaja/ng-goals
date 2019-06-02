@@ -1,4 +1,9 @@
-
-<p>
-  new-goal works!
-</p>
+<form [formGroup]="goalForm">
+  <label for="description">
+    Your goal description
+  </label>
+  <input type="text" formControlName="description" id="description">
+</form>
+<button (click)="handleSubmit()">
+  Submit
+</button>

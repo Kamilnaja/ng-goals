@@ -1,5 +1,7 @@
 .goals-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .goal-name {
 padding: 5px 10px;

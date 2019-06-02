@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Goal } from 'interfaces/goal';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class GoalsService {
@@ -11,8 +12,12 @@ export class GoalsService {
     return this.http.request<Goal[]>('GET', `${this.backend}/goals`, { responseType: 'json' });
   }
 
-  deleteGoal(index: number) {
-    console.log(`deleting ${index}`);
+  deleteGoal(index: number): Observable<{}> {
     return this.http.delete(`${this.backend}/goals/${index}`);
+  }
+
+  saveGoal(description: string): Observable<{}> {
+    return this.http.post<Goal[]>(`${this.backend}/goals`, description, {
+      responseType: 'json' });
   }
 }
