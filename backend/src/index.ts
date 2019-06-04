@@ -1,11 +1,7 @@
 const mongojs = require('mongojs');
 const server = require('./server');
-const Mongoose = require('mongoose');
 const GoalModel = require('./schemas/GoalModel');
-
-Mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true })
-  .then(() => console.log('Connected to db'))
-  .catch((err: Error) => console.log('error while connecting : ' + err));
+const db = require('./db');
 
 server.route({
   method: 'GET',
