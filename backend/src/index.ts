@@ -6,7 +6,7 @@ const db = require('./db');
 server.route({
   method: 'GET',
   path: '/goals',
-  handler: async (request: any, h: any) => {
+  handler: async (request: Request, h: any) => {
     try {
       const test = await GoalModel.find().exec();
       return h.response(test);
