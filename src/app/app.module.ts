@@ -18,6 +18,7 @@ import { GoalsService } from './goals/goals.service';
 import { PricingComponent } from './pricing/pricing.component';
 import { NewGoalComponent } from './new-goal/new-goal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { SingleGoalComponent } from './single-goal/single-goal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     PricingComponent,
     NewGoalComponent,
     ConfirmationModalComponent,
+    SingleGoalComponent,
   ],
   imports: [
     BrowserModule,

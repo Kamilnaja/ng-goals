@@ -1,3 +1,5 @@
+import * as hapi from 'hapi';
+
 const server = require('./../server');
 const GoalModel = require('./../schemas/GoalModel');
 const goalRoute = server;
@@ -5,10 +7,10 @@ const goalRoute = server;
 goalRoute.route({
   method: 'GET',
   path: '/goals',
-  handler: async (request: Request, h: any) => {
+  handler: async (request: hapi.Request, reply: any) => {
     try {
       const test = await GoalModel.find().exec();
-      return h.response(test);
+      return reply.response(test);
     } catch (error) {
       return error;
     }
@@ -18,7 +20,7 @@ goalRoute.route({
 goalRoute.route({
   method: 'GET',
   path: '/goals/{id}',
-  handler: async (request: any, h: any) => {
+  handler: async (request: hapi.Request, h: any) => {
     try {
       const goal = await GoalModel.findById(request.params.id).exec();
       return h.response(goal);
@@ -31,9 +33,10 @@ goalRoute.route({
 goalRoute.route({
   method: ['POST'],
   path: '/goals',
-  handler: async (request: any, h: any) => {
+  handler: async (request: Request, h: any) => {
     try {
       const goalToSave = new GoalModel({
+        // @ts-ignore
         description: request.payload.description,
       });
       const result = await goalToSave.save().then(() => {

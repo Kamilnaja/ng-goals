@@ -4,12 +4,15 @@
   </div>
   <section>
     <ul class="goals-list">
-      <li *ngFor="let goal of goals">
+      <!-- todo - every task as single item -->
+      <li *ngFor="let goal of goals; let i = index">
         <div class="goal-name">
           {{goal.description}} <br/>
         </div>
         <div class="goals-options">
-          <span>read</span>
+          <span [routerLink]='"/goals/" + i' routerLinkActive="router-link-active">
+            read
+          </span>
           <span (click)="deleteGoal(goal._id)" class="delete-btn">
             delete
           </span>

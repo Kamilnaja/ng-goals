@@ -51,4 +51,5 @@ export class GoalsComponent implements OnInit {
   public refresh() {
     return this.goalsService.getGoals().subscribe((data: Goal[]) => this.goals = data);
   }
+
 }

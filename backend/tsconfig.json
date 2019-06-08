@@ -7,9 +7,11 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "target": "es6",
+    "types": ["node"]
   },
   "include": [
-    "./src/**/*", "../interfaces"
+    "./src/**/*",
+    "../interfaces"
   ],
   "exclude": [
     "node_modules"
