@@ -40,5 +40,6 @@ describe('SingleGoalComponent', () => {
 
   it('should read task from server', () => {
     expect(fixture.debugElement.query(By.css('.goal-id'))).toBeDefined();
+    expect(fixture.debugElement.query(By.css('.goal-id')).nativeElement.innerHTML.trim()).toEqual('1');
   });
 });
