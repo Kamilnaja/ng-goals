@@ -38,6 +38,8 @@ goalRoute.route({
       const goalToSave = new GoalModel({
         // @ts-ignore
         description: request.payload.description,
+        // @ts-ignore todo - fix
+        title: request.payload.title
       });
       const result = await goalToSave.save().then(() => {
       });

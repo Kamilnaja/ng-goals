@@ -7,7 +7,14 @@
       <!-- todo - every task as single item -->
       <li *ngFor="let goal of goals; let i = index">
         <div class="goal-name">
-          {{goal.description}} <br />
+          <div>
+            <p>
+                {{goal.title}}
+            </p>
+            <p>
+              {{goal.description}}
+            </p>
+          </div>
         </div>
         <div class="goals-options">
           <span [routerLink]='"/goals/" + i' routerLinkActive="router-link-active" class="read-btn">

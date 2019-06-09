@@ -1,10 +1,20 @@
 <form [formGroup]="goalForm">
-  <label for="description">
-    Your goal description
-  </label>
-  <input type="text" formControlName="description" id="description" #description>
+  <div class="form-wrapper">
+    <div class="input-wrapper">
+      <label for="title">
+        Title
+      </label>
+      <input type="text" formControlName="title" id="title" #title autocomplete="off">
+    </div>
+    <div class="input-wrapper">
+      <label for="description">
+        Description
+      </label>
+      <input type="text" formControlName="description" id="description" #description autocomplete="off">
+    </div>
+  </div>
 </form>
 <button (click)="handleSubmit()">
   Submit
 </button>
-<go-info-strip [text]="'Formularz jest pusty!. Wpisz coś!'" *ngIf="showInfo"></go-info-strip>
+<go-info-strip [text]="'Form is empty. Please enter some text!'" *ngIf="showInfo"></go-info-strip>
