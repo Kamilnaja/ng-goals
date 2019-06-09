@@ -12,13 +12,18 @@ export class GoalsService {
     return this.http.request<Goal[]>('GET', `${this.backend}/goals`, { responseType: 'json' });
   }
 
+  getGoal(id: string) {
+    return this.http.request<Goal>('GET', `${this.backend}/goals/${id}`, { responseType: 'json' });
+  }
+
   deleteGoal(index: number): Observable<{}> {
     return this.http.delete(`${this.backend}/goals/${index}`);
   }
 
   saveGoal(description: string): Observable<{}> {
     return this.http.post<Goal[]>(`${this.backend}/goals`, description, {
-      responseType: 'json' });
+      responseType: 'json'
+    });
   }
 
 }

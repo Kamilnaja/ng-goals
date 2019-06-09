@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Goal } from 'interfaces/goal';
 import { GoalsService } from './goals.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'go-goals',
@@ -14,9 +15,9 @@ export class GoalsComponent implements OnInit {
   public isModalVisible = false;
   public selectedItem: number;
 
-  constructor(private goalsService: GoalsService) {
+  constructor(private goalsService: GoalsService, private location: Location) {
   }
-
+  // todo - take until
   ngOnInit() {
     this.goalsService.getGoals()
       .subscribe(item => this.goals = item);
@@ -49,6 +50,7 @@ export class GoalsComponent implements OnInit {
   }
 
   public refresh() {
-    return this.goalsService.getGoals().subscribe((data: Goal[]) => this.goals = data);
+    return this.goalsService
+      .getGoals().subscribe((data: Goal[]) => this.goals = data);
   }
 }

@@ -1,14 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SingleGoalComponent } from './single-goal.component';
+import { GoalsService } from '../goals/goals.service';
+import { Goal } from 'interfaces/goal';
+import { of } from 'rxjs';
 
 describe('SingleGoalComponent', () => {
   let component: SingleGoalComponent;
   let fixture: ComponentFixture<SingleGoalComponent>;
-
+  const testGoal: Goal = {
+    _id: '1233',
+    description: 'lorem',
+    id: 1,
+    title: 'lorem ipsum'
+  };
   beforeEach(async(() => {
+    const goalsServiceStub: Partial<GoalsService> = {};
+    goalsServiceStub.getGoal = function () {
+      return of(testGoal);
+    };
+
     TestBed.configureTestingModule({
-      declarations: [ SingleGoalComponent ]
+      declarations: [ SingleGoalComponent ],
+      providers: [{provide: GoalsService, useValue: goalsServiceStub}]
     })
     .compileComponents();
   }));

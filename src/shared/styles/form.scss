@@ -1,0 +1,16 @@
+.form-wrapper {
+  padding: 15px 10px;
+  max-width: 600px;
+}
+
+.input-wrapper {
+  display: flex;
+  margin-top: 10px;
+  & label {
+    padding-right: 15px;
+    flex: 0.2;
+  }
+  & input {
+    flex: 1;
+  }
+}
