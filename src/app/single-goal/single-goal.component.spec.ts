@@ -3,6 +3,7 @@ import { SingleGoalComponent } from './single-goal.component';
 import { GoalsService } from '../goals/goals.service';
 import { Goal } from 'interfaces/goal';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('SingleGoalComponent', () => {
   let component: SingleGoalComponent;
@@ -13,6 +14,7 @@ describe('SingleGoalComponent', () => {
     id: 1,
     title: 'lorem ipsum'
   };
+
   beforeEach(async(() => {
     const goalsServiceStub: Partial<GoalsService> = {};
     goalsServiceStub.getGoal = function () {
@@ -34,5 +36,9 @@ describe('SingleGoalComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should read task from server', () => {
+    expect(fixture.debugElement.query(By.css('.goal-id'))).toBeDefined();
   });
 });
