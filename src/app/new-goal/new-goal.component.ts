@@ -8,7 +8,9 @@ import { GoalsService } from '../goals/goals.service';
   styleUrls: ['./new-goal.component.scss']
 })
 export class NewGoalComponent implements OnInit {
+  public showInfo = false;
   public goalForm: FormGroup;
+
   @Output() emitter: EventEmitter<boolean> = new EventEmitter();
   @ViewChild('#description') description: ElementRef;
 
@@ -21,9 +23,14 @@ export class NewGoalComponent implements OnInit {
   }
 
   public handleSubmit(): void {
-    this.goalService.saveGoal(this.goalForm.value)
+    if (this.goalForm.get('description').value) {
+      this.goalService.saveGoal(this.goalForm.value)
       .subscribe(() => this.goalService.getGoals());
-    this.goalForm.get('description').setValue(null);
-    this.emitter.emit(true);
+      this.goalForm.get('description').setValue(null);
+      this.emitter.emit(true);
+      this.showInfo = false;
+    } else {
+      this.showInfo = true;
+    }
   }
 }

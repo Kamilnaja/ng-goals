@@ -4,6 +4,7 @@ import { NewGoalComponent } from './new-goal.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { GoalsService } from '../goals/goals.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('NewGoalComponent', () => {
   let component: NewGoalComponent;
@@ -46,4 +47,25 @@ describe('NewGoalComponent', () => {
     expect(description.valid).toBeTruthy();
   });
 
+  it('should not show error info, when app starts', () => {
+    const infoStrip = fixture.debugElement.query(By.css('go-info-strip'));
+    expect(infoStrip).toBeNull();
+  });
+
+  it('should show error info, when click in submit button and form is empty', () => {
+    expect(component.showInfo).toEqual(false);
+    const description = component.goalForm.get('description');
+    description.setValue('lorem');
+    fixture.detectChanges();
+    expect(component.showInfo).toEqual(false);
+
+    description.setValue('');
+    const button = fixture.nativeElement.querySelector('button');
+    button.click();
+    fixture.detectChanges();
+    expect(component.showInfo).toEqual(true);
+
+    const infoStrip = fixture.debugElement.query(By.css('go-info-strip'));
+    expect(infoStrip).toBeDefined();
+  });
 });

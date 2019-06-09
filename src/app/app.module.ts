@@ -19,6 +19,7 @@ import { PricingComponent } from './pricing/pricing.component';
 import { NewGoalComponent } from './new-goal/new-goal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { SingleGoalComponent } from './single-goal/single-goal.component';
+import { InfoStripComponent } from './info-strip/info-strip.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SingleGoalComponent } from './single-goal/single-goal.component';
     NewGoalComponent,
     ConfirmationModalComponent,
     SingleGoalComponent,
+    InfoStripComponent,
   ],
   imports: [
     BrowserModule,
