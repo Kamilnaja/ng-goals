@@ -1,9 +1,13 @@
-<div class="confirmation-modal" [hidden]="!isVisible" [class.isVisible]="isVisible">
-  Are you sure?
-  <button (click)="setModalClosed(true)">
-    Yes
-  </button>
-  <button (click)="setModalClosed(false)">
-    No
-  </button>
+<div class="confirmation-modal isVisible">
+  <span>
+    Are you sure?
+  </span>
+  <div class="btn-wrapper">
+    <button (click)="setModalClosed(true)">
+      Yes
+    </button>
+    <button (click)="setModalClosed(false)">
+      No
+    </button>
+  </div>
 </div>

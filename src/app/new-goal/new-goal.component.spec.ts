@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NewGoalComponent } from './new-goal.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { GoalsService } from '../goals/goals.service';

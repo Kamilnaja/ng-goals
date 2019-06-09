@@ -6,9 +6,6 @@ import { Goal } from 'interfaces/goal';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GoalsComponent', () => {
   let component: GoalsComponent;

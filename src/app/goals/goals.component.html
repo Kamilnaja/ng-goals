@@ -7,7 +7,7 @@
       <!-- todo - every task as single item -->
       <li *ngFor="let goal of goals; let i = index">
         <div class="goal-name">
-          {{goal.description}} <br/>
+          {{goal.description}} <br />
         </div>
         <div class="goals-options">
           <span [routerLink]='"/goals/" + i' routerLinkActive="router-link-active" class="read-btn">
@@ -24,11 +24,14 @@
     </ul>
   </section>
   <section>
-    <h4>Click here, to add some more goals to track!</h4>
+    <h4>
+      Click here, to add some more goals to track!
+    </h4>
     <button class="btn btn-primary" (click)="setGoalVisible()">
       Add next goal
     </button>
     <go-new-goal *ngIf="newGoalVisible" (emitter)="handleRefresh()"></go-new-goal>
   </section>
 </div>
-<go-confirmation-modal [isVisible]="isModalVisible" (emitter)="modalClose($event)"></go-confirmation-modal>
+<go-confirmation-modal (emitter)="modalClose($event)" *ngIf="isModalVisible">
+</go-confirmation-modal>
