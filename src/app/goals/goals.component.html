@@ -10,7 +10,7 @@
           {{goal.description}} <br/>
         </div>
         <div class="goals-options">
-          <span [routerLink]='"/goals/" + i' routerLinkActive="router-link-active">
+          <span [routerLink]='"/goals/" + i' routerLinkActive="router-link-active" class="read-btn">
             read
           </span>
           <span (click)="deleteGoal(goal._id)" class="delete-btn">

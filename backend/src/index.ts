@@ -16,7 +16,7 @@ const start = async function () {
     });
     await _server.start();
   } catch (err) {
-    process.exit(1);
+    console.log(err);
   }
 };
 
