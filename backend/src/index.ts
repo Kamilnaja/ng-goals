@@ -3,7 +3,8 @@ const _server = require('./server');
 const GoalModel = require('./schemas/GoalModel');
 const db = require('./db');
 const emitter = require('./events/events');
-const route = require('./routes/goalRoute');
+const goalRoute = require('./routes/goal/goalRoute');
+const loginRoute = require('./routes/login/loginRoute');
 
 const start = async function () {
   try {
@@ -16,7 +17,7 @@ const start = async function () {
     });
     await _server.start();
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 

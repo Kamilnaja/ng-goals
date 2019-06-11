@@ -1,7 +1,7 @@
 import * as hapi from 'hapi';
 
-const server = require('./../server');
-const GoalModel = require('./../schemas/GoalModel');
+const server = require('./../../server');
+const GoalModel = require('./../../schemas/GoalModel');
 const goalRoute = server;
 
 goalRoute.route({
@@ -45,8 +45,7 @@ goalRoute.route({
       });
       return h.response(result);
     } catch (error) {
-      console.log(error);
-      return error;
+      throw new Error(error);
     }
   }
 });
