@@ -17,5 +17,4 @@ export class SingleGoalComponent implements OnInit {
     this.goalsService.getGoal(goalId)
       .subscribe(item => this.goal = item);
   }
-
 }

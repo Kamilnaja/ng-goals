@@ -7,10 +7,10 @@ const goalRoute = server;
 goalRoute.route({
   method: 'GET',
   path: '/goals',
-  handler: async (request: hapi.Request, reply: any) => {
+  handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
     try {
       const test = await GoalModel.find().exec();
-      return reply.response(test);
+      return h.response(test);
     } catch (error) {
       return error;
     }
@@ -20,7 +20,7 @@ goalRoute.route({
 goalRoute.route({
   method: 'GET',
   path: '/goals/{id}',
-  handler: async (request: hapi.Request, h: any) => {
+  handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
     try {
       const goal = await GoalModel.findById(request.params.id).exec();
       return h.response(goal);
@@ -33,13 +33,11 @@ goalRoute.route({
 goalRoute.route({
   method: ['POST'],
   path: '/goals',
-  handler: async (request: Request, h: any) => {
+  handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
     try {
       const goalToSave = new GoalModel({
-        // @ts-ignore
-        description: request.payload.description,
-        // @ts-ignore todo - fix
-        title: request.payload.title
+        description: request.payload['description'],
+        title: request.payload['title']
       });
       const result = await goalToSave.save().then(() => {
       });
@@ -53,7 +51,7 @@ goalRoute.route({
 goalRoute.route({
   method: ['DELETE'],
   path: '/goals/{id}',
-  handler: async (request: any, h: any) => {
+  handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
     try {
       const result = await GoalModel.findByIdAndDelete(request.params.id)
         .then(() => {

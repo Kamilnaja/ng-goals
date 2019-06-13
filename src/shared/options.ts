@@ -5,5 +5,3 @@ interface Options {
 export const options: Options = {
   backendUrl: 'http://localhost:8080'
 };
-
-
