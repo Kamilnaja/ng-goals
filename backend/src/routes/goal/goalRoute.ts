@@ -1,10 +1,8 @@
 import * as hapi from 'hapi';
-
-const server = require('./../../server');
+import { server } from './../../server';
 const GoalModel = require('./../../schemas/GoalModel');
-const goalRoute = server;
 
-goalRoute.route({
+server.route({
   method: 'GET',
   path: '/goals',
   handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
@@ -17,7 +15,7 @@ goalRoute.route({
   }
 });
 
-goalRoute.route({
+server.route({
   method: 'GET',
   path: '/goals/{id}',
   handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
@@ -30,7 +28,7 @@ goalRoute.route({
   }
 });
 
-goalRoute.route({
+server.route({
   method: ['POST'],
   path: '/goals',
   handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
@@ -48,7 +46,7 @@ goalRoute.route({
   }
 });
 
-goalRoute.route({
+server.route({
   method: ['DELETE'],
   path: '/goals/{id}',
   handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
@@ -64,4 +62,4 @@ goalRoute.route({
   }
 });
 
-export default goalRoute;
+export default server;

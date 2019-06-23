@@ -1,9 +1,7 @@
 import * as hapi from 'hapi';
+import { server } from './../../server';
 
-const server = require('./../../server');
-const goalRoute = server;
-
-goalRoute.route({
+server.route({
   method: 'POST',
   path: '/api/login',
   handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
@@ -12,4 +10,4 @@ goalRoute.route({
   }
 });
 
-export default(goalRoute);
+export default server;

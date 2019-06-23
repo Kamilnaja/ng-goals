@@ -7,4 +7,4 @@ let GoalSchema = new Schema({
   id: Number
 });
 
-module.exports = mongoose.model('test', GoalSchema);
+export const GoalModel = mongoose.model('test', GoalSchema);
