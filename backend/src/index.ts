@@ -1,12 +1,13 @@
 import { server } from './server';
 const db = require('./db');
 const emitter = require('./events/events');
-const goalRoute = require('./routes/goal/goalRoute');
-const loginRoute = require('./routes/login/loginRoute');
 
 const start = async function () {
   try {
     await server.register([
+      {
+        plugin: require('./events/events')
+      },
       {
         plugin: require('hapi-cors'),
         options: {
@@ -19,7 +20,8 @@ const start = async function () {
       },
       {
         plugin: require('./routes/login/loginRoute')
-      }
+      },
+
     ]);
     await server.start();
   } catch (err) {

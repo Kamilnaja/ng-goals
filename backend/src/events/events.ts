@@ -1,9 +1,9 @@
 import { RequestRoute } from 'hapi';
-import { server } from './../server';
-const eventLogger = server.events;
+import * as hapi from 'hapi';
 
-eventLogger.on('route', (route: RequestRoute) => {
-  console.log(`New route added: ${route.path}`);
-});
-
-module.exports = eventLogger;
+module.exports = {
+  'name': 'logger',
+  register: async (server: hapi.Server) => {
+    server.events.on('route', (route: RequestRoute) => console.log(`New route added : ${route.path}`));
+  }
+};
