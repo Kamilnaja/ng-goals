@@ -9,7 +9,10 @@ module.exports = {
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         const item = {};
         return item;
-      }
+      },
+      // options: {
+      //   auth: 'simple'
+      // }
     });
   }
 };
