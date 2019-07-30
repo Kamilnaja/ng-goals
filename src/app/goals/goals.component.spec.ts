@@ -1,13 +1,12 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { GoalsComponent } from './goals.component';
-import { NewGoalComponent } from '../new-goal/new-goal.component';
-import { GoalsService } from './goals.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Goal } from 'interfaces/goal';
 import { of } from 'rxjs';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { Location } from '@angular/common';
-import { RouterTestingModule } from '@angular/router/testing';
+import { NewGoalComponent } from '../new-goal/new-goal.component';
+import { GoalsComponent } from './goals.component';
+import { GoalsService } from './goals.service';
 
 describe('GoalsComponent', () => {
   let component: GoalsComponent;

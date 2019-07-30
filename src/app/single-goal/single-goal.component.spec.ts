@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SingleGoalComponent } from './single-goal.component';
 import { GoalsService } from '../goals/goals.service';
 import { Goal } from 'interfaces/goal';
-import { of } from 'rxjs';
+import { of, Observable, from } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute, Data } from '@angular/router';
 
 describe('SingleGoalComponent', () => {
   let component: SingleGoalComponent;
@@ -17,15 +18,29 @@ describe('SingleGoalComponent', () => {
 
   beforeEach(async(() => {
     const goalsServiceStub: Partial<GoalsService> = {};
+
     goalsServiceStub.getGoal = function () {
       return of(testGoal);
     };
 
     TestBed.configureTestingModule({
       declarations: [ SingleGoalComponent ],
-      providers: [{provide: GoalsService, useValue: goalsServiceStub}]
+      providers: [
+        { provide: GoalsService, useValue: goalsServiceStub },
+        {
+          provide: ActivatedRoute, useValue: {
+            snapshot: {
+              params: {
+                'goal': '123'
+              },
+              data: {
+                goal: {'id': 1}
+              }
+            }
+          }
+        } ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

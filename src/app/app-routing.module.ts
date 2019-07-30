@@ -5,19 +5,24 @@ import { FeaturesComponent } from './features/features.component';
 import { GoalsComponent } from './goals/goals.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { SingleGoalComponent } from './single-goal/single-goal.component';
+import { GoalResolve } from './single-goal/goalResolve.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'features', component: FeaturesComponent },
   { path: 'goals', component: GoalsComponent },
   { path: 'pricing', component: PricingComponent },
-  { path: 'goals/:id', component: SingleGoalComponent }
+  {
+    path: 'goals/:id',
+    component: SingleGoalComponent,
+    resolve: { goal: GoalResolve }
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
+  imports: [ RouterModule.forRoot(routes, {
     enableTracing: false
-  })],
-  exports: [RouterModule]
+  }) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

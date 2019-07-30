@@ -20,6 +20,7 @@ import { NewGoalComponent } from './new-goal/new-goal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { SingleGoalComponent } from './single-goal/single-goal.component';
 import { InfoStripComponent } from './info-strip/info-strip.component';
+import { GoalResolve } from './single-goal/goalResolve.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,11 @@ import { InfoStripComponent } from './info-strip/info-strip.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, GoalsService],
-  bootstrap: [AppComponent]
+  providers: [
+    LoginService,
+    GoalsService,
+    GoalResolve,
+  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
