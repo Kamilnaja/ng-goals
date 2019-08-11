@@ -1,4 +1,7 @@
 export { };
+import { UserSchema, UserModel } from './schemas/UserModel';
+const db = require('./db');
+
 const Hapi = require('@hapi/hapi');
 const Crypto = require('./Crypto').Crypto;
 // todo - remove hardcoded users
@@ -17,7 +20,11 @@ const validate = async (request, username, password, h) => {
     return { response: h.redirect('https://hapijs.com/help') };     // custom response
   }
 
-  const user = users[ username.trim() ];
+  // check if user exists in db
+  const fetchUser = await UserModel.find().exec();
+  console.log(fetchUser);
+
+  const user = users[ username ];
   if (!user) {
     return { credentials: null, isValid: false };
   }
@@ -56,16 +63,10 @@ const main = async () => {
     {
       plugin: require('./routes/login/loginRoute')
     },
-  ]);
-
-  server.route({
-    method: 'GET',
-    path: '/hello',
-    handler: (request, h) => {
-      return 'Hello world';
+    {
+      plugin: require('./routes/users/userRoute')
     }
-  });
-
+  ]);
 
   await server.start();
 
