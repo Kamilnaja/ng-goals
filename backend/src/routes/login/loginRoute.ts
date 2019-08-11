@@ -12,9 +12,6 @@ module.exports = {
         const item = {};
         return item;
       },
-      // options: {
-      //   auth: 'simple'
-      // }
     });
 
     server.route({
@@ -28,9 +25,6 @@ module.exports = {
           return error;
         }
       },
-      options: {
-        auth: 'simple'
-      }
     });
   }
 };

@@ -8,9 +8,14 @@ module.exports = {
     server.route({
       method: 'POST',
       path: '/api/users',
+      options: {
+        auth: false
+      },
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           // todo - check if user exists
+
+          // todo - hash password
           console.log(request.payload);
 
           if (!request.payload) {
@@ -29,10 +34,13 @@ module.exports = {
     server.route({
       method: 'GET',
       path: '/api/users',
+      options: {
+        auth: false
+      },
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
-          const test = await UserModel.find().exec();
-          return h.response(test);
+          const allUsers = await UserModel.find().exec();
+          return h.response(allUsers);
         } catch (error) {
           console.log(error);
           return error;

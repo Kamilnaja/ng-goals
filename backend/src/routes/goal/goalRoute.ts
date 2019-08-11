@@ -14,7 +14,7 @@ module.exports = {
           return h.response(test);
         } catch (error) {
           console.log(error);
-          return error;
+          return ('there is an error');
         }
       }
     });

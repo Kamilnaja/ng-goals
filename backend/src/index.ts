@@ -1,41 +1,7 @@
 export { };
-import { UserSchema, UserModel } from './schemas/UserModel';
 const db = require('./db');
-
+import { validate } from './auth/Validator';
 const Hapi = require('@hapi/hapi');
-const Crypto = require('./Crypto').Crypto;
-// todo - remove hardcoded users
-
-const users = {
-  john: {
-    username: 'john',
-    password: '$2a$10$iqJSHD.BGr0E2IxQwYgJmeP3NvhPrXAeLSaGCj6IR/XU5QtjVu5Tm',   // 'secret'
-    name: 'John Doe',
-    id: '2133d32a'
-  }
-};
-
-const validate = async (request, username, password, h) => {
-  if (username === 'help') {
-    return { response: h.redirect('https://hapijs.com/help') };     // custom response
-  }
-
-  // check if user exists in db
-  const fetchUser = await UserModel.find().exec();
-  console.log(fetchUser);
-
-  const user = users[ username ];
-  if (!user) {
-    return { credentials: null, isValid: false };
-  }
-  const crypto = new Crypto();
-  const isValid = crypto.compare(user, password);
-
-  const credentials = { id: user.id, name: user.name };
-  console.log(isValid);
-
-  return { isValid, credentials };
-};
 
 const main = async () => {
 
@@ -67,7 +33,11 @@ const main = async () => {
       plugin: require('./routes/users/userRoute')
     }
   ]);
-
+  server.events.on('response', function (request) {
+    console.log(
+      request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode
+    );
+  });
   await server.start();
 
   return server;
