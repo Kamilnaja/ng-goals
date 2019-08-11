@@ -8,7 +8,7 @@ module.exports = {
     server.route({
       method: 'GET',
       path: '/goals',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler:  async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const test = await GoalModel.find().exec();
           return h.response(test);
@@ -33,13 +33,13 @@ module.exports = {
     });
 
     server.route({
-      method: ['POST'],
+      method: [ 'POST' ],
       path: '/goals',
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const goalToSave = new GoalModel({
-            description: request.payload['description'],
-            title: request.payload['title']
+            description: request.payload[ 'description' ],
+            title: request.payload[ 'title' ]
           });
           const result = await goalToSave.save().then(() => {
           });
@@ -51,7 +51,7 @@ module.exports = {
     });
 
     server.route({
-      method: ['DELETE'],
+      method: [ 'DELETE' ],
       path: '/goals/{id}',
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {

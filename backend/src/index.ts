@@ -1,5 +1,7 @@
-const bcrypt = require('bcryptjs');
+export { };
 const Hapi = require('@hapi/hapi');
+const Crypto = require('./Crypto').Crypto;
+// todo - remove hardcoded users
 
 const users = {
   john: {
@@ -19,12 +21,11 @@ const validate = async (request, username, password, h) => {
   if (!user) {
     return { credentials: null, isValid: false };
   }
-
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(user.password, salt);
-  const isValid = bcrypt.compareSync(password, hash);
+  const crypto = new Crypto();
+  const isValid = crypto.compare(user, password);
 
   const credentials = { id: user.id, name: user.name };
+  console.log(isValid);
 
   return { isValid, credentials };
 };
@@ -38,13 +39,33 @@ const main = async () => {
   server.auth.strategy('simple', 'basic', { validate });
   server.auth.default('simple');
 
+  await server.register([
+    {
+      plugin: require('./events/events')
+    },
+    {
+      plugin: require('hapi-cors'),
+      options: {
+        origins: [ '*' ],
+        methods: [ 'POST, GET, OPTIONS', 'DELETE' ],
+      },
+    },
+    {
+      plugin: require('./routes/goal/goalRoute'),
+    },
+    {
+      plugin: require('./routes/login/loginRoute')
+    },
+  ]);
+
   server.route({
     method: 'GET',
-    path: '/',
-    handler: function (request, h) {
-      return 'welcome';
+    path: '/hello',
+    handler: (request, h) => {
+      return 'Hello world';
     }
   });
+
 
   await server.start();
 
@@ -54,7 +75,6 @@ const main = async () => {
 main()
   .then((server) => console.log(`Server listening on ${server.info.uri}`))
   .catch((err) => {
-
     console.error(err);
     process.exit(1);
   });

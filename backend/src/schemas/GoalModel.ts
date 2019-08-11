@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const db = require('./../db');
+
 
 export const GoalSchema = new Schema({
   title: String,
