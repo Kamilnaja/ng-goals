@@ -19,7 +19,6 @@ export class Crypto {
 }
 
 export const validate = async (request, username, password, h) => {
-  console.log(`PASS: >>> ${password}`);
 
   if (username === 'help') {
     return { response: h.redirect('https://hapijs.com/help') };     // custom response

@@ -7,7 +7,7 @@ module.exports = {
 
     server.route({
       method: 'GET',
-      path: '/goals',
+      path: '/api/goals',
       handler:  async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const test = await GoalModel.find().exec();
@@ -21,7 +21,7 @@ module.exports = {
 
     server.route({
       method: 'GET',
-      path: '/goals/{id}',
+      path: '/api/goals/{id}',
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const goal = await GoalModel.findById(request.params.id).exec();
@@ -34,7 +34,7 @@ module.exports = {
 
     server.route({
       method: [ 'POST' ],
-      path: '/goals',
+      path: '/api/goals',
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const goalToSave = new GoalModel({
@@ -52,7 +52,7 @@ module.exports = {
 
     server.route({
       method: [ 'DELETE' ],
-      path: '/goals/{id}',
+      path: '/api/goals/{id}',
       handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
         try {
           const result = await GoalModel.findByIdAndDelete(request.params.id)
