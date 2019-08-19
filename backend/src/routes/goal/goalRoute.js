@@ -1,14 +1,13 @@
-import * as hapi from 'hapi';
-import { GoalModel } from '../../schemas/GoalModel';
+const GoalMode = require('../../schemas/GoalModel');
 
 module.exports = {
   name: 'goalRoute',
-  register: async (server: hapi.Server, options: hapi.RouteOptions) => {
+  register: async (server, options) => {
 
     server.route({
       method: 'GET',
       path: '/api/goals',
-      handler:  async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler:  async (request, h) => {
         try {
           const test = await GoalModel.find().exec();
           return h.response(test);
@@ -22,7 +21,7 @@ module.exports = {
     server.route({
       method: 'GET',
       path: '/api/goals/{id}',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           const goal = await GoalModel.findById(request.params.id).exec();
           return h.response(goal);
@@ -35,7 +34,7 @@ module.exports = {
     server.route({
       method: [ 'POST' ],
       path: '/api/goals',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           const goalToSave = new GoalModel({
             description: request.payload[ 'description' ],
@@ -53,7 +52,7 @@ module.exports = {
     server.route({
       method: [ 'DELETE' ],
       path: '/api/goals/{id}',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           const result = await GoalModel.findByIdAndDelete(request.params.id)
             .then(() => {

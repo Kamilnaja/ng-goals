@@ -1,9 +1,8 @@
-import * as hapi from 'hapi';
-import { UserModel } from '../../schemas/UserModel';
+const UserModel = require('../../schemas/UserModel');
 
 module.exports = {
   name: 'userRoute',
-  register: async (server: hapi.Server, options: hapi.RouteOptions) => {
+  register: async (server, options) => {
 
     server.route({
       method: 'POST',
@@ -11,7 +10,7 @@ module.exports = {
       options: {
         auth: false
       },
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           // todo - check if user exists
 
@@ -37,7 +36,7 @@ module.exports = {
       options: {
         auth: false
       },
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           const allUsers = await UserModel.find().exec();
           return h.response(allUsers);
@@ -50,7 +49,7 @@ module.exports = {
   }
 };
 
-async function saveUser(request: hapi.Request, h: hapi.ResponseToolkit) {
+async function saveUser(request, h) {
   const userToSave = new UserModel({
     password: request.payload[ 'password' ],
     name: request.payload[ 'name' ]

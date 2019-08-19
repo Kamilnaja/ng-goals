@@ -1,14 +1,12 @@
-import * as hapi from 'hapi';
-import { GoalModel } from '../../schemas/GoalModel';
-
+const GoalModel = require('../../schemas/GoalModel');
 
 module.exports = {
   name: 'loginRoute',
-  register: async (server: hapi.Server, options: hapi.RouteOptions) => {
+  register: async (server, options) => {
     server.route({
       method: 'POST',
       path: '/api/login',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         const item = {};
         return item;
       },
@@ -17,7 +15,7 @@ module.exports = {
     server.route({
       method: 'GET',
       path: '/',
-      handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      handler: async (request, h) => {
         try {
           const goal = await GoalModel.findById(request.params.id).exec();
           return h.response(goal);

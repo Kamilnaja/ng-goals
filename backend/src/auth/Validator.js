@@ -1,17 +1,15 @@
-import { UserSchema, UserModel } from './../schemas/UserModel';
+import { UserSchema, UserModel } from '../schemas/UserModel';
 const bcrypt = require('bcryptjs');
 
-export interface User {
-  password: string;
-}
+
 
 export class Crypto {
-  salt: any;
-  hash: any;
+  salt;
+  hash;
   constructor(
   ) { }
 
-  public compare(user: User, password) {
+  compare(user, password) {
     this.salt = bcrypt.genSaltSync(10);
     this.hash = bcrypt.hashSync(user.password, this.salt);
     return bcrypt.compareSync(password, this.hash);

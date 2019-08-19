@@ -1,8 +1,5 @@
-import * as hapi from 'hapi';
-export { };
 const db = require('./db');
-import { validate } from './auth/Validator';
-const Hapi = require('@hapi/hapi');
+const Hapi = require('hapi');
 
 const main = async () => {
   const people = {
@@ -23,7 +20,6 @@ const main = async () => {
 
   const server = Hapi.server({ port: 8080 });
 
-  // await server.register(require('@hapi/basic'));
   await server.register(require('hapi-auth-jwt2'));
   server.auth.strategy('jwt', 'jwt', {
     key: 'Secret',
@@ -38,13 +34,13 @@ const main = async () => {
   server.route([
     {
       method: 'GET', path: '/api/test', config: { auth: false },
-      handler: function (request: hapi.Request, h: hapi.ResponseToolkit) {
+      handler: function (request, h) {
         return h.response('token is not required');
       }
     },
     {
       method: 'GET', path: '/api/restricted', config: { auth: 'jwt' },
-      handler: function (request: hapi.Request, h: hapi.ResponseToolkit) {
+      handler: function (request, h) {
         return h.response({ text: 'You used a Token!' })
           .header('Authorization', request.headers.authorization);
       }
