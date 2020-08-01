@@ -5,7 +5,7 @@ import { GoalsService } from '../goals/goals.service';
 @Component({
   selector: 'go-new-goal',
   templateUrl: './new-goal.component.html',
-  styleUrls: ['./new-goal.component.scss', './../../shared/styles/form.scss']
+  styleUrls: ['./new-goal.component.scss', './../../../shared/styles/form.scss']
 })
 export class NewGoalComponent implements OnInit {
   public showInfo = false;
@@ -15,9 +15,7 @@ export class NewGoalComponent implements OnInit {
   @ViewChild('#description') description: ElementRef;
   @ViewChild('#title') title: ElementRef;
 
-  constructor(
-    private fb: FormBuilder,
-    private goalService: GoalsService) { }
+  constructor(private fb: FormBuilder, private goalService: GoalsService) {}
 
   ngOnInit() {
     this.goalForm = this.fb.group({
@@ -28,8 +26,7 @@ export class NewGoalComponent implements OnInit {
 
   public handleSubmit(): void {
     if (this.goalForm.get('description').value && this.goalForm.get('title').value) {
-      this.goalService.saveGoal(this.goalForm.value)
-        .subscribe(() => this.goalService.getGoals());
+      this.goalService.saveGoal(this.goalForm.value).subscribe(() => this.goalService.getGoals());
       this.goalForm.get('description').setValue(null);
       this.goalForm.get('title').setValue(null);
       this.emitter.emit(true);

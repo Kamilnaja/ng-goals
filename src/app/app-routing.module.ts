@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { FeaturesComponent } from './features/features.component';
-import { GoalsComponent } from './goals/goals.component';
-import { PricingComponent } from './pricing/pricing.component';
-import { SingleGoalComponent } from './single-goal/single-goal.component';
-import { GoalResolve } from './single-goal/goalResolve.service';
+import { LoginComponent } from './components/login/login.component';
+import { FeaturesComponent } from './components/features/features.component';
+import { GoalsComponent } from './components/goals/goals.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { SingleGoalComponent } from './components/single-goal/single-goal.component';
+import { GoalResolve } from './components/single-goal/goalResolve.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,9 +20,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {
-    enableTracing: false
-  }) ],
-  exports: [ RouterModule ]
+  imports: [
+    RouterModule.forRoot(routes, {
+      enableTracing: false
+    })
+  ],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

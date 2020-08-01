@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Goal } from 'interfaces/goal';
 import { of } from 'rxjs';
-import { NewGoalComponent } from '../new-goal/new-goal.component';
 import { GoalsComponent } from './goals.component';
 import { GoalsService } from './goals.service';
+import { NewGoalComponent } from '../new-goal/new-goal.component';
 
 describe('GoalsComponent', () => {
   let component: GoalsComponent;
@@ -23,19 +23,21 @@ describe('GoalsComponent', () => {
 
     const goalsList = [];
     goalsList.push(goal1);
-    goalsServiceStub.getGoals = function () {
+    goalsServiceStub.getGoals = function() {
       return of(goalsList);
     };
 
     TestBed.configureTestingModule({
       declarations: [GoalsComponent, NewGoalComponent],
-      providers: [{
-        provide: GoalsService, useValue: goalsServiceStub
-      }],
+      providers: [
+        {
+          provide: GoalsService,
+          useValue: goalsServiceStub
+        }
+      ],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [RouterTestingModule]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -63,4 +65,3 @@ describe('GoalsComponent', () => {
     expect(modal).toBeDefined();
   }));
 });
-

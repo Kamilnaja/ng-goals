@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Goal } from 'interfaces/goal';
 import { Observable } from 'rxjs';
-import { options } from './../../shared/options';
+import { options } from 'src/shared/options';
 
 @Injectable()
 export class GoalsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getGoals() {
     return this.http.request<Goal[]>('GET', `${options.backendUrl}/goals`, { responseType: 'json' });
@@ -25,5 +25,4 @@ export class GoalsService {
       responseType: 'json'
     });
   }
-
 }

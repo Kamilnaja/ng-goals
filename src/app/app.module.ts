@@ -1,26 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { WrapperComponent } from './wrapper/wrapper.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderMenuComponent } from './header-menu/header-menu.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MainComponent } from './main/main.component';
-import { LoginComponent } from './login/login.component';
-import { FeaturesComponent } from './features/features.component';
+import { HeaderComponent } from './components/header/header.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
+import { MainComponent } from './components/main/main.component';
+import { LoginComponent } from './components/login/login.component';
+import { FeaturesComponent } from './components/features/features.component';
+import { GoalsComponent } from './components/goals/goals.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { NewGoalComponent } from './components/new-goal/new-goal.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { SingleGoalComponent } from './components/single-goal/single-goal.component';
+import { InfoStripComponent } from './components/info-strip/info-strip.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginService } from './login/login.service';
 import { HttpClientModule } from '@angular/common/http';
-import { GoalsComponent } from './goals/goals.component';
-import { GoalsService } from './goals/goals.service';
-import { PricingComponent } from './pricing/pricing.component';
-import { NewGoalComponent } from './new-goal/new-goal.component';
-import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
-import { SingleGoalComponent } from './single-goal/single-goal.component';
-import { InfoStripComponent } from './info-strip/info-strip.component';
-import { GoalResolve } from './single-goal/goalResolve.service';
+import { LoginService } from './components/login/login.service';
+import { GoalsService } from './components/goals/goals.service';
+import { GoalResolve } from './components/single-goal/goalResolve.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,20 +37,10 @@ import { GoalResolve } from './single-goal/goalResolve.service';
     NewGoalComponent,
     ConfirmationModalComponent,
     SingleGoalComponent,
-    InfoStripComponent,
+    InfoStripComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    LoginService,
-    GoalsService,
-    GoalResolve,
-  ],
-  bootstrap: [ AppComponent ]
+  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule, HttpClientModule],
+  providers: [LoginService, GoalsService, GoalResolve],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
