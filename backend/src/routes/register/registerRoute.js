@@ -6,7 +6,7 @@ module.exports = {
     server.route({
       method: ['POST'],
       path: '/api/register',
-      handler: async (request, h) => {
+      handler: async (request, h, options) => {
         try {
           const userToSave = new UserModel({
             name: request.payload['name'],
@@ -19,6 +19,9 @@ module.exports = {
         } catch (error) {
           throw new Error(error);
         }
+      },
+      options: {
+        auth: false
       }
     });
   }

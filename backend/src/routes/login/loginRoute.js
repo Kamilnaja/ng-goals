@@ -7,22 +7,12 @@ module.exports = {
       method: 'POST',
       path: '/api/login',
       handler: async (request, h) => {
-        const item = {};
-        return item;
+        const payload = request.payload;
+        return payload;
       },
-    });
-
-    server.route({
-      method: 'GET',
-      path: '/',
-      handler: async (request, h) => {
-        try {
-          const goal = await GoalModel.findById(request.params.id).exec();
-          return h.response(goal);
-        } catch (error) {
-          return error;
-        }
-      },
+      options: {
+        auth: false
+      }
     });
   }
 };

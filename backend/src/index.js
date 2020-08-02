@@ -10,13 +10,12 @@ const main = async () => {
   };
 
   const validate = async (decoded, request) => {
-    if (!people[ decoded.id ]) {
-      return { isValid: false }
+    if (!people[decoded.id]) {
+      return { isValid: false };
     } else {
-      return { isValid: true }
+      return { isValid: true };
     }
   };
-
 
   const server = Hapi.server({ port: 8080 });
 
@@ -25,7 +24,7 @@ const main = async () => {
     key: 'Secret',
     validate: validate,
     verifyOptions: {
-      algorithms: [ 'HS256' ]
+      algorithms: ['HS256']
     }
   });
 
@@ -33,19 +32,22 @@ const main = async () => {
 
   server.route([
     {
-      method: 'GET', path: '/api/test', config: { auth: false },
-      handler: function (request, h) {
+      method: 'GET',
+      path: '/api/test',
+      config: { auth: false },
+      handler: function(request, h) {
         return h.response('token is not required');
       }
     },
     {
-      method: 'GET', path: '/api/restricted', config: { auth: 'jwt' },
-      handler: function (request, h) {
-        return h.response({ text: 'You used a Token!' })
-          .header('Authorization', request.headers.authorization);
+      method: 'GET',
+      path: '/api/restricted',
+      config: { auth: 'jwt' },
+      handler: function(request, h) {
+        return h.response({ text: 'You used a Token!' }).header('Authorization', request.headers.authorization);
       }
     }
-  ]);;
+  ]);
 
   await server.register([
     {
@@ -54,12 +56,12 @@ const main = async () => {
     {
       plugin: require('hapi-cors'),
       options: {
-        origins: [ '*' ],
-        methods: [ 'POST, GET, OPTIONS', 'DELETE' ],
-      },
+        origins: ['*'],
+        methods: ['POST, GET, OPTIONS', 'DELETE']
+      }
     },
     {
-      plugin: require('./routes/goal/goalRoute'),
+      plugin: require('./routes/goal/goalRoute')
     },
     {
       plugin: require('./routes/login/loginRoute')
@@ -69,7 +71,7 @@ const main = async () => {
     }
   ]);
 
-  server.events.on('response', function (request) {
+  server.events.on('response', function(request) {
     console.log(
       request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode
     );
@@ -80,8 +82,8 @@ const main = async () => {
 };
 
 main()
-  .then((server) => console.log(`Server listening on ${server.info.uri}`))
-  .catch((err) => {
+  .then(server => console.log(`Server listening on ${server.info.uri}`))
+  .catch(err => {
     console.error(err);
     process.exit(1);
   });

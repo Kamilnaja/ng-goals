@@ -19,7 +19,8 @@ import { LoginHttpService } from './components/login/login.httpService';
 import { GoalsService } from './components/goals/goals.service';
 import { GoalResolve } from './components/single-goal/goalResolve.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InfoStripComponent
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule, HttpClientModule],
-  providers: [LoginHttpService, GoalsService, GoalResolve],
+  providers: [
+    LoginHttpService,
+    GoalsService,
+    GoalResolve,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
