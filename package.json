@@ -56,6 +56,7 @@
     "karma-nyan-reporter": "^0.2.5",
     "lint-staged": "^8.1.7",
     "node-sass": "^4.12.0",
+    "prettier": "2.0.5",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",

@@ -1,13 +1,10 @@
 import { UserSchema, UserModel } from '../schemas/UserModel';
 const bcrypt = require('bcryptjs');
 
-
-
 export class Crypto {
   salt;
   hash;
-  constructor(
-  ) { }
+  constructor() {}
 
   compare(user, password) {
     this.salt = bcrypt.genSaltSync(10);
@@ -17,15 +14,14 @@ export class Crypto {
 }
 
 export const validate = async (request, username, password, h) => {
-
   if (username === 'help') {
-    return { response: h.redirect('https://hapijs.com/help') };     // custom response
+    return { response: h.redirect('https://hapijs.com/help') }; // custom response
   }
 
   const user = await UserModel.findOne({
     $or: [
       {
-        'name': username
+        name: username
       }
     ]
   }).exec();

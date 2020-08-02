@@ -3,28 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginHttpService } from './login.httpService';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  const loginServiceStub: Partial<LoginService> = {};
+  const loginServiceStub: Partial<LoginHttpService> = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [
-        ReactiveFormsModule,
-        FormsModule
-      ],
+      imports: [ReactiveFormsModule, FormsModule],
       providers: [
         {
-          provide: LoginService, useValue: loginServiceStub
+          provide: LoginHttpService,
+          useValue: loginServiceStub
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

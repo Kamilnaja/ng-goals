@@ -1,19 +1,18 @@
-const GoalMode = require('../../schemas/GoalModel');
+const GoalModel = require('../../schemas/GoalModel');
 
 module.exports = {
   name: 'goalRoute',
   register: async (server, options) => {
-
     server.route({
       method: 'GET',
       path: '/api/goals',
-      handler:  async (request, h) => {
+      handler: async (request, h) => {
         try {
           const test = await GoalModel.find().exec();
           return h.response(test);
         } catch (error) {
           console.log(error);
-          return ('there is an error');
+          return 'there is an error';
         }
       }
     });
@@ -32,16 +31,15 @@ module.exports = {
     });
 
     server.route({
-      method: [ 'POST' ],
+      method: ['POST'],
       path: '/api/goals',
       handler: async (request, h) => {
         try {
           const goalToSave = new GoalModel({
-            description: request.payload[ 'description' ],
-            title: request.payload[ 'title' ]
+            description: request.payload['description'],
+            title: request.payload['title']
           });
-          const result = await goalToSave.save().then(() => {
-          });
+          const result = await goalToSave.save().then(() => {});
           return h.response(result);
         } catch (error) {
           throw new Error(error);
@@ -50,14 +48,13 @@ module.exports = {
     });
 
     server.route({
-      method: [ 'DELETE' ],
+      method: ['DELETE'],
       path: '/api/goals/{id}',
       handler: async (request, h) => {
         try {
-          const result = await GoalModel.findByIdAndDelete(request.params.id)
-            .then(() => {
-              console.log('success');
-            });
+          const result = await GoalModel.findByIdAndDelete(request.params.id).then(() => {
+            console.log('success');
+          });
           return h.response(result);
         } catch (error) {
           return error;
