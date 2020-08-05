@@ -30,25 +30,6 @@ const main = async () => {
 
   server.auth.default('jwt');
 
-  server.route([
-    {
-      method: 'GET',
-      path: '/api/test',
-      config: { auth: false },
-      handler: function(request, h) {
-        return h.response('token is not required');
-      }
-    },
-    {
-      method: 'GET',
-      path: '/api/restricted',
-      config: { auth: 'jwt' },
-      handler: function(request, h) {
-        return h.response({ text: 'You used a Token!' }).header('Authorization', request.headers.authorization);
-      }
-    }
-  ]);
-
   await server.register([
     {
       plugin: require('./events/events')
@@ -65,6 +46,9 @@ const main = async () => {
     },
     {
       plugin: require('./routes/login/loginRoute')
+    },
+    {
+      plugin: require('./routes/register/registerRoute')
     },
     {
       plugin: require('./routes/users/userRoute')

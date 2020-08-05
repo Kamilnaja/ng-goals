@@ -4,14 +4,15 @@ module.exports = {
   name: 'registerRoute',
   register: async (server, options) => {
     server.route({
-      method: ['POST'],
+      method: 'POST',
       path: '/api/register',
       handler: async (request, h, options) => {
         try {
           const userToSave = new UserModel({
-            name: request.payload['name'],
+            login: request.payload['login'],
             password: request.payload['password']
           });
+
           const result = await userToSave.save().then(() => {
             console.log('user saved!');
           });

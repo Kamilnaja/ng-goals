@@ -1,6 +1,6 @@
 export interface Goal {
   id: number;
-  _id?: string;
+  _id?: string; // todo - remove ?
   description: string;
   title: string;
 }

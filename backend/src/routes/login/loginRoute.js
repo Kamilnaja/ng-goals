@@ -1,5 +1,3 @@
-const GoalModel = require('../../schemas/GoalModel');
-
 module.exports = {
   name: 'loginRoute',
   register: async (server, options) => {
