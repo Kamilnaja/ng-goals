@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Login } from '../login/login.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { options } from 'src/shared/options';
+import { options } from './../../../shared/options';
 
 @Injectable({
   providedIn: 'root'

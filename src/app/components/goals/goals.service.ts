@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Goal } from 'interfaces/goal';
 import { Observable } from 'rxjs';
-import { options } from 'src/shared/options';
+import { options } from './../../shared/options';
+import { Goal } from './interfaces/goal';
 
 @Injectable()
 export class GoalsService {

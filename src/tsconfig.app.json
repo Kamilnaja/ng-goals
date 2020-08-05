@@ -1,6 +1,13 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@app/core/*": ["app/core/*"],
+      "@app/shared/*": ["app/shared/*"],
+      "@env/*": ["environments/*"]
+    },
     "outDir": "../out-tsc/app",
     "types": [],
     "module": "ESNext"
