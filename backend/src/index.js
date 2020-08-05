@@ -17,7 +17,7 @@ const main = async () => {
     }
   };
 
-  const server = Hapi.server({ port: 8080 });
+  const server = Hapi.server({ port: 8081 });
 
   await server.register(require('hapi-auth-jwt2'));
   server.auth.strategy('jwt', 'jwt', {

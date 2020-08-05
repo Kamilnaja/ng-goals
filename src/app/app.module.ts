@@ -1,26 +1,24 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { WrapperComponent } from './components/wrapper/wrapper.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import { MainComponent } from './components/main/main.component';
-import { LoginComponent } from './components/login/login.component';
-import { GoalsComponent } from './components/goals/goals.component';
-import { NewGoalComponent } from './components/new-goal/new-goal.component';
-import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
-import { SingleGoalComponent } from './components/single-goal/single-goal.component';
-import { InfoStripComponent } from './components/info-strip/info-strip.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { LoginHttpService } from './components/login/login.httpService';
-import { GoalsService } from './components/goals/goals.service';
-import { GoalResolve } from './components/single-goal/goalResolve.service';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AuthModule } from './components/auth/auth.module';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { GoalsComponent } from './components/goals/goals.component';
+import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
+import { HeaderComponent } from './components/header/header.component';
+import { InfoStripComponent } from './components/info-strip/info-strip.component';
+import { MainComponent } from './components/main/main.component';
+import { NewGoalComponent } from './components/new-goal/new-goal.component';
+import { GoalResolve } from './components/single-goal/goalResolve.service';
+import { SingleGoalComponent } from './components/single-goal/single-goal.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GoalsService } from './components/goals/goals.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,23 +27,21 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     FooterComponent,
     HeaderMenuComponent,
     MainComponent,
-    LoginComponent,
     GoalsComponent,
     NewGoalComponent,
     ConfirmationModalComponent,
     SingleGoalComponent,
     InfoStripComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule, HttpClientModule, AuthModule],
   providers: [
-    LoginHttpService,
-    GoalsService,
     GoalResolve,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },
+    GoalsService
   ],
   bootstrap: [AppComponent]
 })

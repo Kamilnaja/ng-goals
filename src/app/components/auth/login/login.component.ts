@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { LoginHttpService } from './login.httpService';
+import { AuthService } from '../services/auth.service.ts.service';
 
 @Component({
   selector: 'go-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-  constructor(private fb: FormBuilder, private service: LoginHttpService) {}
+  constructor(private fb: FormBuilder, private service: AuthService) {}
 
   ngOnInit() {
     this.buildForm();

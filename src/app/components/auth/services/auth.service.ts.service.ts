@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Login } from '../login/login.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Login } from './login.interface';
 import { options } from 'src/shared/options';
 
-@Injectable()
-export class LoginHttpService {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
   constructor(private http?: HttpClient) {}
 
   public submit(body: Login): Observable<Login> {

@@ -3,5 +3,5 @@ interface Options {
 }
 
 export const options: Options = {
-  backendUrl: 'http://localhost:8080/api'
+  backendUrl: 'http://localhost:8081/api'
 };
